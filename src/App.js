@@ -21,8 +21,9 @@ function App() {
       {
         // nayoks.map(nayok => <Nayok name={nayok.name} age={nayok.age}></Nayok>)
 
-        // key ta bosano hoi coz uniquity bujanor jonno jate kono jamela na hoi
-        nayoks.map(nayok => <Nayok name={nayok.name} key={nayok.id} email={nayok.email} age={nayok.age}></Nayok>)
+        // key ta bosano hoi coz uniquity bujanor jonno jate kono jamela na hoi 
+        // eta fetch er sathe milai kore data load korse
+        nayoks.map(nayok => <Nayok name={nayok.name} key={nayok.id} email={nayok.email}></Nayok>)
       }
 
       {/* <Nayok name={nayoks[0]} movie="5" age="51"></Nayok>
