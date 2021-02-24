@@ -1,16 +1,35 @@
 import logo from './logo.svg';
 import './App.css';
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 
 function App() {
-  const nayoks = ['Jasim', 'Dipjol', 'BappaRaz']
+  const [nayoks , setNayoks] = useState([])
+  useEffect(() => {
+    fetch('https://jsonplaceholder.typicode.com/users')
+    .then(res => res.json())
+    .then(data => setNayoks(data))
+  }, [])
+
+  // eta alada load hoi but apadoto dekhanor jonno eta k off kore data load kore dekhano hoise
+  // const nayoks = [{name: 'Jasim', age: 56}, {name: 'Dipjol', age: 61}, {name: 'BappaRaz', age: 15}, {name:'Omar Sani', age: 25}]
+
   return (
     <div className="App">
       <MovieCounter></MovieCounter>
-      <Nayok name={nayoks[0]} movie="5" age="51"></Nayok>
+
+      {/* eta k ek line a kora hoise */}
+      {
+        // nayoks.map(nayok => <Nayok name={nayok.name} age={nayok.age}></Nayok>)
+
+        // key ta bosano hoi coz uniquity bujanor jonno jate kono jamela na hoi
+        nayoks.map(nayok => <Nayok name={nayok.name} key={nayok.id} email={nayok.email} age={nayok.age}></Nayok>)
+      }
+
+      {/* <Nayok name={nayoks[0]} movie="5" age="51"></Nayok>
       <Nayok name="Sakib khan" movie="2" age="35"></Nayok>
       <Nayok name={nayoks[2]} movie="7" age="45"></Nayok>
-      <Nayok name="Bappa Raz" movie="6"></Nayok>
+      <Nayok name="Bappa Raz" movie="6"></Nayok> */}
+
       <header className="App-header">
         <img src={logo} className="App-logo" alt="logo" />
       </header>
@@ -49,6 +68,7 @@ function Nayok(props) {
       <h1>{props.name}</h1>
       <h2>Movie: {props.movie}</h2>
       <h3>age: {props.age || 40}</h3>
+      <h2>Email: {props.email}</h2>
     </div>
   )
 }
